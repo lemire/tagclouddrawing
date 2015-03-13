@@ -28,38 +28,5 @@ In floorplan-code/src, try
 The latter two require that your setup have Firefox and other things similar
 to ours...  The first two might work okay on any platform,
 
-# INSTALL
-
-Use: (from the src subdirectory)
-     
-      make
-      cd ../data
-      ../bin/floorp owen
-      pdflatex owen
-      xpdf owen.pdf
-     
-The first parts of this can be achieved by "make placetest"
-
-
-The input file would be called 'owen.pl' and for debugging, it outputs
-TeX.  We also output html, so you can fire up a browser and look at owen.html.
 
 Also, there are  scripts that superficially extract "keywords" and their collocation information, determine bounding box sizes,   floorplan and then show the html
-    
-The top-level script for this is "gut.sh", eg
-
-         gut.sh <path to some text file> <number of tags to take>
-
-There is a make target to do this, too...it will process some source code file to get its tags!
-
-The scripts are definitely quick-prototype quality and if they actually work for you....wow!
-
-File "owen1.pl" is a more complex sample input
-
-
-This _was_ a CAD tool...which means it does more than we need.  For instance,
-it reserved "wiring spaces" between boxes (depending on how many connections
-are specified between boxes).  Also, each initial box has a specified "upward"
-and "righward" pull  (certain chip modules may have strong reasons to want
-to be on the upper-left area of the chip, for instance).  The code is also
-capable of choosing between different alternative shapes for each box.

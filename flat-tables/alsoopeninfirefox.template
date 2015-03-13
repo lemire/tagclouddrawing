@@ -1,0 +1,29 @@
+<html><head><link rel="stylesheet" type="text/css" href="cloud.css"/>
+
+<title>Tag Cloud -- client-side block size computations (Local File Read / Write in Mozilla and Netspace 7)</title> </head><body>
+
+
+<!--Work areas, I guess -->
+
+<p id="savedwarning" style="background:#cff"></p>
+
+<p id="testingarea" style="width:20cm;text-align:center;padding:0px;margin-left:auto;margin-right:auto;border: solid black 1px"></p>
+<p style="width:100%;margin-left:auto;margin-right:auto;background:#ccc">The width/height data will appear below:</p>
+<pre id="dataarea" style="text-align:left; width:20cm; margin-left:auto;margin-right:auto; background: #ffa;">
+</pre>
+
+
+<script language="JavaScript" src="taggeometry.js">
+alert("I do not fire but am I necessary?");
+</script>
+
+<!-- X Y Z Z Y is replaced automagically -->
+
+<script language="JavaScript" type="text/javascript">
+processInputTagCloudFile("XYZZY");
+
+</script>
+
+
+</body>
+</html>

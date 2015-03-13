@@ -1,0 +1,55 @@
+/******************************************/
+/* Owen table-specific stuff */
+/******************************************/
+body > table {
+	/* we center the master table-layout */
+        margin-left:auto;
+        margin-right:auto;
+        /*text-align:center;*/
+        /* we leave some space on top */
+        margin-top:1cm;
+}
+
+table > tbody > tr  table {
+	/* stretch any subtable to full width 
+	turning this on has the effect of making the cloud
+	appear more evenly distributed. However, it
+	may also move apart tags that you want close.
+	*/
+	width:100%;
+
+}
+
+table {
+	/*border-spacing is very important, without it, there
+	will be spurious spaces between rows and this can make
+	the cloud look "clustered"*/
+	border-spacing: 0px;/* part of the CSS spec,
+	but not supported by microsoft*/
+}
+table > tbody   tr, table > tbody   td {
+	/* Here, we are basically turning off any margin, border, or padding
+	inside the tag cloud */
+	
+	margin: 0cm ;
+	padding:0px ;
+	border-width: 0px;
+	
+}
+
+
+table > tbody tr td  span {
+	/* this makes sure no two tags are stuck together.
+	whether we need 1 or 2 pixels is a matter of taste.
+	Note that there is something slightly wrong in Owen's
+	model because it seems not to include spacing between
+	tags*/
+        margin-left:2px!important;/*must be important not to get overwrittent*/	
+}
+
+
+td { 
+/* this centers text throughout. It is not essential*/
+text-align:center;
+
+}

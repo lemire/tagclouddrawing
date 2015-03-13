@@ -1,0 +1,130 @@
+
+15 May 2007
+ Put the code under (new) BSD-style license prior to (low-key) distribution. 
+ Hope the crew at U. Sask. finds it useful.
+
+14 May 2007
+ Heavy editing to remove unused VLSI features and otherwise simplify code.
+
+11 May 2007
+(Edited by DL on May 2007)
+
+Looking at comments below, I can confirm that the code was modified 
+(some time ago) so that it currently uses a graph model (and not hypergraph).  
+So the hypergraph part of the input file is presumably unused.  I have 
+removed it.
+
+
+--------------------------------------
+
+INSTALL:
+
+Use: (from the src subdirectory)
+     
+      make
+      cd ../data
+      ../bin/floorp owen
+      pdflatex owen
+      xpdf owen.pdf
+     
+The first parts of this can be achieved by "make placetest"
+
+
+The input file would be called 'owen.pl' and for debugging, I had it output
+TeX.  Since this was 1991, it's old LaTeX...
+
+we also output html, so you can fire up a browser and look at owen.html
+
+    also, there are some horrid scripts that superficially extract "keywords"
+       and their collocation information, determine bounding box sizes,
+       floorplan and then show the html
+    
+    The top-level script for this is "gut.sh", eg
+         gut.sh <path to some text file> <number of tags to take>
+
+    There is a make target to do this, too...it will process some source
+        code file to get its tags!
+
+    The resulting cloud may be pretty; whether it means anything useful is up
+    for debate.  The scripts are definitely quick-prototype quality and if they
+    actually work for you....wow!
+
+   File "owen1.pl" is a more complex sample input
+
+
+This _was_ a CAD tool...which means it does more than we need.  For instance,
+it reserved "wiring spaces" between boxes (depending on how many connections
+are specified between boxes).  Also, each initial box has a specified "upward"
+and "righward" pull  (certain chip modules may have strong reasons to want
+to be on the upper-left area of the chip, for instance).  The code is also
+capable of choosing between different alternative shapes for each box.
+
+Look at ../data/owen.pl
+3 0                         <-- number of boxes, number of "self loops" (can be 0; not used)
+0 1 0 0 1 0 Owen_Kaser      <-- box 0, weight 1, no pulls left or up 0 0, 1 shape, 0 selfloops (unused), string read with %s
+10 1                        <-- the first (and only) entry of a list of shapes.  10-by-1 shape.
+1 1 0 0 1 0 Valerie_Kaser   <-- box 1
+25 2                        <-  its 1 and only shape is 25-by-2
+2 1 0 0 1 0 Daniel_Lemire   <-- box 2
+13 1                        <-- is 13-by-1
+3                           <-- number of graph edges pulling between boxes
+1 0 1                       <-- I have set up a unit-weight clique involving the boxes
+2 0 1
+2 1 1  <--- everything after the last edge is ignored.  Old hypergraph stuff
+3                           
+0 mork1 1 2                 
+1                           
+0                           
+1 mork2 1 2
+2
+0
+2 mork3 1 2
+2
+1
+
+
+
+
+
+
+HISTORY, by OFK
+
+I wrote most of this code (with some I/O code by other people) as part
+of an aborted project in summer 1991 to parallelize some of the
+standard Physical CAD tools.  My supervisor was hoping that we could
+attract some attention (and $$) from CAD tool vendors and have
+something paperable.  Eventually, we realized that this was unlikely
+to succeed quickly on either the money or the paper front.  So I
+abandoned the work.
+
+Sometime around 1996, part of the code was revived for a study of 1-d
+placement (this time, in the context of a Prolog compiler).  The code,
+not under version control, was rudely hacked then.  This study was to
+be part of the journal version (my would-be coauthors had already
+hacked their own heuristic and published at a good conference, where
+nobody (themselves included) realized they were solving the classic
+"linear placement" problem).  Unfortunately, due to the lure of
+quicker conference papers, the journal version never was finished.  I
+turned my part into a UNBSJ tech report.  (It worked well!)
+
+
+On 4 Sept 2006, I de-parallelized the code and hopefully removed
+all 1-d hackery.  The code is a bit of a mess, although it compiles
+with -Wall and no complaints.  First, it was never really
+officially finished, although I think it was mostly debugged.  Second, it is
+mostly written in K&R C, not ANSI.  The multiprocessor didn't support ANSI.
+Thirdly, the parallelization had introduced lots of crud and weirdness. This 
+has had an effect on the sequential code, even after initial cleanup.
+
+The modules "mob.o" and "kl.o" have not been converted and do not
+compile.  These are alternative bipartitioning heuristics and are not
+used in the current build.
+    
+
+
+
+
+
+
+
+
